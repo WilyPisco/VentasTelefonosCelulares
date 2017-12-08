@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 public class VentasRealizadas {
   private String nombre;
@@ -20,8 +22,11 @@ public class VentasRealizadas {
     PrintWriter pw;
     FileWriter fw;
     File f;
-  
-  //ArrayList<String> ventas= new ArrayList<>();
+    
+    JSONObject obj = new JSONObject();
+    JSONArray list = new JSONArray();
+    
+    
   public VentasRealizadas(){}
   public VentasRealizadas(String nom,String pago,String email,String ciu,String pais,String marcacel) throws IOException
   {
@@ -31,11 +36,11 @@ public class VentasRealizadas {
       this.ciudad=ciu;
       this.pais=pais;
       this.marca_celular=marcacel;
-      RegistrarVenta();
+      RegistrarVentaJson();
       
   }
   public void RegistrarVenta() throws IOException{
-      f= new File("ResgistroVentas.txt");
+      f= new File("D:\\ResgistroVentas.txt");
       fw= new FileWriter(f);
       bw=new BufferedWriter(fw);
       pw= new PrintWriter(bw);
@@ -49,8 +54,22 @@ public class VentasRealizadas {
       
       bw.close();
       pw.close();
+      
+  } 
+  public void RegistrarVentaJson()throws IOException{
+      f= new File("D:\\ResgistroVentas.txt");
+      obj.put("Vendedor", "WILMER PISCO RAMIREZ");
+      obj.put("TIENDA", "CLARO PERU SAC");
+      JSONObject objc = new JSONObject();
+       objc.put("Nombre: ",nombre);              
+      objc.put("Email: ",correo);
+      objc.put("Pago: ",pago);
+      objc.put("Ciudad: ",ciudad);
+      objc.put("Pais: ",pais);
+      objc.put("Marca de Celular: ",marca_celular);obj.put("FACTURA",objc );      
+      fw= new FileWriter("D:\\ResgistroVentas.txt");
+      fw.write(obj.toJSONString());
+      fw.flush();
+      fw.close();
   }
-  
-    
-    
 }
