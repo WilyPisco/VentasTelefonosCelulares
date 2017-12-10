@@ -6,20 +6,40 @@
 
 package com.gvillena;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import javax.swing.JOptionPane;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
-/**
- *
- * @author PISCO
- */
+
 public class Pago_Credito extends javax.swing.JFrame {
+    public String nombre;
+    public String pago;
+    public String correo;
+    public String ciudad;
+    public String pais;
+    public String marca_celular;
+    public String plan;
+    public String direccion;
+    
 
-    /** Creates new form Pago_Credito */
-    String tarjeta="",caducidad="",clave="",titular="",precio="";
+      String tarjeta="",caducidad="",clave="",titular="",precio="";
+   BufferedWriter bw ;
+    PrintWriter pw;
+    FileWriter fw;
+    File f;
+    
+    JSONObject obj = new JSONObject();
+    JSONArray list = new JSONArray();
+   
+   
+    
     public Pago_Credito() {
         initComponents();
-        
-        lblCantidaPago.setText("S/. 2 700,00");
         txtCaducidad.setText("01/22");
     }
 
@@ -42,12 +62,11 @@ public class Pago_Credito extends javax.swing.JFrame {
         txtCaducidad = new javax.swing.JTextField();
         txtClave = new javax.swing.JPasswordField();
         txtTitular = new javax.swing.JTextField();
-        lblImport = new javax.swing.JLabel();
-        lblCantidaPago = new javax.swing.JLabel();
         lblVisa3 = new javax.swing.JLabel();
         lblExpress2 = new javax.swing.JLabel();
         lblPayPal2 = new javax.swing.JLabel();
         lblMasterCard2 = new javax.swing.JLabel();
+        rbtnTerminos = new javax.swing.JRadioButton();
         panelImages = new javax.swing.JPanel();
         btnComprar = new javax.swing.JButton();
         lblVisa2 = new javax.swing.JLabel();
@@ -73,10 +92,6 @@ public class Pago_Credito extends javax.swing.JFrame {
 
         lblTitular.setText("* Titular de la Tarjeta");
 
-        lblImport.setText("IMPORTE TOTAL DE COMPRA");
-
-        lblCantidaPago.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-
         lblVisa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/_Visa-32.png"))); // NOI18N
 
         lblExpress2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/_American_Express-32.png"))); // NOI18N
@@ -85,56 +100,56 @@ public class Pago_Credito extends javax.swing.JFrame {
 
         lblMasterCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Master_Card-32.png"))); // NOI18N
 
+        rbtnTerminos.setText("Acepto los terminos y condicines de la Compra.");
+
         javax.swing.GroupLayout panelDatosLayout = new javax.swing.GroupLayout(panelDatos);
         panelDatos.setLayout(panelDatosLayout);
         panelDatosLayout.setHorizontalGroup(
             panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDatosLayout.createSequentialGroup()
-                .addGap(90, 90, 90)
                 .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblImport)
                     .addGroup(panelDatosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTitular, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblCodigo, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblCaducidad, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblNumTarjeta, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTitular)
+                            .addGroup(panelDatosLayout.createSequentialGroup()
+                                .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCaducidad, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNumTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 105, Short.MAX_VALUE))))
+                    .addGroup(panelDatosLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
                         .addComponent(lblVisa3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblExpress2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblPayPal2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblMasterCard2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panelDatosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitular, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblCodigo, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblCaducidad, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblNumTarjeta, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTitular)
-                    .addGroup(panelDatosLayout.createSequentialGroup()
-                        .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCantidaPago)
-                            .addComponent(txtCaducidad, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNumTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 105, Short.MAX_VALUE)))
+                        .addComponent(lblMasterCard2)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(rbtnTerminos)
+                .addGap(64, 64, 64))
         );
         panelDatosLayout.setVerticalGroup(
             panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosLayout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+            .addGroup(panelDatosLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblMasterCard2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblVisa3)
                     .addComponent(lblExpress2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPayPal2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblImport)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblCantidaPago)
-                .addGap(17, 17, 17)
+                .addGap(48, 48, 48)
                 .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNumTarjeta)
                     .addComponent(txtNumTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -150,7 +165,9 @@ public class Pago_Credito extends javax.swing.JFrame {
                 .addGroup(panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTitular))
-                .addGap(42, 42, 42))
+                .addGap(18, 18, 18)
+                .addComponent(rbtnTerminos)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         btnComprar.setBackground(new java.awt.Color(255, 153, 0));
@@ -185,7 +202,7 @@ public class Pago_Credito extends javax.swing.JFrame {
                 .addComponent(lblVisa2)
                 .addGap(7, 7, 7)
                 .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         lblSecurityInf.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -281,12 +298,12 @@ public class Pago_Credito extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelImages, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelImages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelControles, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -321,22 +338,50 @@ public class Pago_Credito extends javax.swing.JFrame {
        JOptionPane.showMessageDialog(null, "Ingrese Nombre de Titular");
        txtTitular.requestFocus();
        }
+       else if(rbtnTerminos.isSelected()==false){              
+              JOptionPane.showMessageDialog(null, "Acepte Terminos y Condiciones de Compra\n");              
+       }
        else{
-        JOptionPane.showMessageDialog(null, "COMPRA CON EXITO");
         MainForm m=new MainForm();
         m.setVisible(true);
         m.setLocation(100, 0);
         this.setVisible(false);
-       }
-
-
-    }
+       }}
+    public void RegistrarVentaJson()throws IOException{
+      
+      f= new File("D:\\ResgistroVentas.txt");
+      obj.put("Vendedor", "WILMER PISCO RAMIREZ");
+      obj.put("TIENDA", "CLARO PERU SAC");
+      JSONObject objc = new JSONObject();
+       objc.put("Nombre: ", nombre);              
+      objc.put("Email: ", correo);
+      objc.put("Ciudad: ", ciudad);
+      objc.put("Pais: ", pais);
+      objc.put("Marca de Celular: ", marca_celular);
+      objc.put("Plan PostPago: ",plan);      
+      objc.put("Pago: ", pago);
+      obj.put("FACTURA",objc );      
+      fw= new FileWriter("D:\\ResgistroVentas.txt");
+      fw.write(obj.toJSONString());
+      fw.flush();
+      fw.close();
+  }
+    
     
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
-        Compra();        
-        
+    
+        Compra();
+          try {
+               RegistrarVentaJson(); 
+              JOptionPane.showMessageDialog(null, "COMPRA CON EXITO");
+          } catch (IOException ex) {
+              JOptionPane.showMessageDialog(null, "ERROR AL CREAR FICHERO DE VENTA\n"+ex);
+          }
     }//GEN-LAST:event_btnComprarActionPerformed
+        public void AbrirCarpeta()
+        {
 
+        }
     /**
      * @param args the command line arguments
      */
@@ -377,11 +422,9 @@ public class Pago_Credito extends javax.swing.JFrame {
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCaducidad;
-    private javax.swing.JLabel lblCantidaPago;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblExpress1;
     private javax.swing.JLabel lblExpress2;
-    private javax.swing.JLabel lblImport;
     private javax.swing.JLabel lblKey1;
     private javax.swing.JLabel lblMasterCard1;
     private javax.swing.JLabel lblMasterCard2;
@@ -396,6 +439,7 @@ public class Pago_Credito extends javax.swing.JFrame {
     private javax.swing.JPanel panelControles;
     private javax.swing.JPanel panelDatos;
     private javax.swing.JPanel panelImages;
+    private javax.swing.JRadioButton rbtnTerminos;
     private javax.swing.JTextField txtCaducidad;
     private javax.swing.JPasswordField txtClave;
     private javax.swing.JTextField txtNumTarjeta;

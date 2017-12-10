@@ -91,7 +91,7 @@
                       <Component id="lblCiudad" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblProvincia" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblPostal" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblTelefono" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCorreo" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblCelular" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblPais" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblNom" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -99,21 +99,19 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="txtNom" alignment="0" min="-2" pref="230" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="cboPais" min="-2" pref="151" max="-2" attributes="0"/>
-                              <Component id="txtDireccion2" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtDireccion1" alignment="0" min="-2" pref="181" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="txtProvincia" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtCiudad" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="txtPostal" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="txtCelular" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtTelefono" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="cboPais" min="-2" pref="151" max="-2" attributes="0"/>
+                          <Component id="txtDireccion2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtDireccion1" alignment="0" min="-2" pref="181" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="txtProvincia" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtCiudad" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="txtPostal" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="txtCelular" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtCorreo" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -160,8 +158,8 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -192,7 +190,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtPostal">
         </Component>
-        <Component class="javax.swing.JTextField" name="txtTelefono">
+        <Component class="javax.swing.JTextField" name="txtCorreo">
         </Component>
         <Component class="javax.swing.JTextField" name="txtCelular">
         </Component>
@@ -211,9 +209,9 @@
             <Property name="text" type="java.lang.String" value="* Codigo Postal"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblTelefono">
+        <Component class="javax.swing.JLabel" name="lblCorreo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="* Telefeno"/>
+            <Property name="text" type="java.lang.String" value="* E-mail"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cboPais">
